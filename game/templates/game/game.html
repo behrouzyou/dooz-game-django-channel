@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="{% static 'game/style.css' %}">
+</head>
+<body>
+<div class="game">
+    <h1>Tic Tac Toe</h1>
+    <div id="status">Connecting...</div>
+
+    <div class="board">
+        <button class="cell" data-position="0"></button>
+        <button class="cell" data-position="1" ></button>
+        <button class="cell" data-position="2"></button>
+        <button class="cell" data-position="3"></button>
+        <button class="cell" data-position="4"></button>
+        <button class="cell" data-position="5"></button>
+        <button class="cell" data-position="6"></button>
+        <button class="cell" data-position="7"></button>
+        <button class="cell" data-position="8"></button>
+    </div>
+</div>
+
+<script>
+    const gameId = "{{ game_id }}";
+    const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+    const socket = new WebSocket(`${protocol}://${window.location.host}/ws/game/${gameId}/`);
+</script>
+<script src="{% static 'game/game.js' %}"></script>
+</body>
+</html>
